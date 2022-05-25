@@ -1,0 +1,34 @@
+.buttonsWrapper{
+    position: absolute;
+    z-index: 1200;
+    display: flex;
+    justify-content: space-between;
+    min-height: 50px;
+    width: 150px;
+    flex-direction: column; 
+    left: 91%;
+    top: 87%;
+    // transition: 0.5s;
+    // border: 1px solid red;
+
+    .button{
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 0.8em;
+        margin-top: 4px;
+        font-weight: bold;
+    }
+
+    .addButton{
+        border: 1px solid grey;
+        color: rgb(116, 116, 116);
+    }
+
+    .removeButton{
+        border: none;
+        background-color: #D20200;
+        color: white;
+    }
+
+    
+}
