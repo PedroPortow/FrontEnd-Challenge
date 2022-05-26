@@ -3,16 +3,18 @@
     z-index: 1200;
     display: flex;
 
-    height: 130px;
+    // height: 130px;
     flex: 1;
     // width: 150px;
     flex-direction: column; 
-    left: 90%;
-    bottom: 20px;
+    right: 0%;
+    margin-right: 10px;
+    // margin-bottom: 10px;
+    bottom: 3%;
+    
     transition: 0.5s;
     // border: 1px solid red;
-
-    
+ 
 }
 
 .transition1{
@@ -20,14 +22,21 @@
     z-index: 1200;
     display: flex;
 
-    height: 130px;
-    flex: 1;
-    // width: 150px;
-    flex-direction: column; 
-    left: 90%;
-    bottom: 30px;
-    transition: 0.5s;
-    // border: 1px solid red;
+//    height: 130px;
+   flex: 1;
+   // width: 150px;
+   flex-direction: column; 
+   right: 0%;
+   margin-right: 10px;
+//    margin-bottom: 10px;
+   bottom: 4%;
+   
+   transition: 0.5s;
+   // border: 1px solid red;
+    
+
+
+
 }
 
 .transition2{
@@ -35,12 +44,18 @@
     z-index: 1200;
     display: flex;
 
-    height: 130px;
-    flex: 1;
-    // width: 150px;
-    flex-direction: column; 
-    left: 90%;
-    bottom: 40px;
-    transition: 0.5s;
-    // border: 1px solid red;
+  //    height: 130px;
+  flex: 1;
+  // width: 150px;
+  flex-direction: column; 
+  right: 0%;
+  margin-right: 10px;
+//    margin-bottom: 10px;
+  bottom: 4%;
+  
+  transition: 0.5s;
+  // border: 1px solid red;
+   
+
 }
+

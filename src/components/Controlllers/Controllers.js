@@ -36,13 +36,20 @@ function Controllers() {
 
     console.log(state)
 
+    const classChange =  () => {
+      if(state.length === 0){
+        return "buttonsWrapper"
+      }
+      else if(state.length > 0 && !active){
+        return "transition1"
+      }
+      else if(state.length > 0 && active){
+       return 'transition2'
+      }
+    }
 
   return (
-    <div className=
-      {state.length === 0 ? 
-      "buttonsWrapper" : 
-      "transition1"} 
-    >
+    <div className={classChange()} >
       {isModalVisible ? 
       ReactDOM.createPortal
       (<Modal 
