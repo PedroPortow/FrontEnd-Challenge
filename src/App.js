@@ -1,12 +1,12 @@
 import './App.scss';
 import Header from './components/Header/Header';
-import MapWrapper from './components/MapWrapper/MapWrapper';
+import Map from './components/Map/Map';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <MapWrapper/>
+      <Map />
     </div>
   );
 }

@@ -3,11 +3,18 @@ import { useMarkerContext } from '../../context/MarkerContext'
 import './Modal.scss'
 
 
-function Modal({closeModal}) {
-    const {state, dispatch} = useMarkerContext()
+function Modal({closeModal, deletePin}) {
+    const {state, dispatch, active, setActive} = useMarkerContext()
+    
     function handleDeleteAll(){
-        closeModal()
-        dispatch({type: 'DELETE_ALL'})
+      closeModal()
+      dispatch({type: 'DELETE_ALL'})
+    }
+
+    function handleDeletePin(activePin){
+      dispatch({type: 'DELETE_UNIQUE', payload: activePin})
+      setActive(false)
+      closeModal()
     }
 
   return (
@@ -17,7 +24,7 @@ function Modal({closeModal}) {
             <i className="fa-solid fa-x"></i>
         </div>
         <div className='secondSection'>
-            <h3>Excluir todos os pontos?</h3>
+           {deletePin ? <h3>Excluir ponto selecionado?</h3> : <h3>Excluir todos os pontos?</h3>}
         </div>
         <div className='thirdSection'>
             <div className='warningWrapper'>
@@ -26,7 +33,7 @@ function Modal({closeModal}) {
             </div>
         </div>
         <div className='forthSection'>
-            <button className='deleteButton' onClick={handleDeleteAll}><i className="fa-solid fa-trash-can" /> EXCLUIR</button>
+            <button className='deleteButton' onClick={deletePin ? () =>handleDeletePin(active) : handleDeleteAll}><i className="fa-solid fa-trash-can" /> EXCLUIR</button>
             <button className='cancelButton' onClick={() => closeModal()}>CANCELAR</button>
         </div>
       </div>

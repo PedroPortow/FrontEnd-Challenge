@@ -1,0 +1,46 @@
+.buttonsWrapper{
+    position: absolute;
+    z-index: 1200;
+    display: flex;
+
+    height: 130px;
+    flex: 1;
+    // width: 150px;
+    flex-direction: column; 
+    left: 90%;
+    bottom: 20px;
+    transition: 0.5s;
+    // border: 1px solid red;
+
+    
+}
+
+.transition1{
+    position: absolute;
+    z-index: 1200;
+    display: flex;
+
+    height: 130px;
+    flex: 1;
+    // width: 150px;
+    flex-direction: column; 
+    left: 90%;
+    bottom: 30px;
+    transition: 0.5s;
+    // border: 1px solid red;
+}
+
+.transition2{
+    position: absolute;
+    z-index: 1200;
+    display: flex;
+
+    height: 130px;
+    flex: 1;
+    // width: 150px;
+    flex-direction: column; 
+    left: 90%;
+    bottom: 40px;
+    transition: 0.5s;
+    // border: 1px solid red;
+}
