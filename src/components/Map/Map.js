@@ -32,7 +32,6 @@ function Map() {
     }
 
 
-
     function handlePolyClick(e){
         const lat = e.latLng.lat()
         const lng = e.latLng.lng()

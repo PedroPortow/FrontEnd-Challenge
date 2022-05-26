@@ -37,6 +37,8 @@
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         flex-direction: column;
+
+        
     }
 
     .scroll{
@@ -102,10 +104,10 @@
         cursor: pointer;
         transition: 150ms;
 
-        &:hover{
-            background-color: #F5F6FA;
-            transition: 300ms ease-in
-        }
+        // &:hover{
+        //     background-color: #F5F6FA;
+        //     transition: 300ms ease-in
+        // }
 
     
         

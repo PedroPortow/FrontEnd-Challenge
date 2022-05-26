@@ -5,14 +5,13 @@ import './List.scss'
 
 
 function List() {
-    const {state, dispatch, active, setActive} = useMarkerContext()
+    const {state, active} = useMarkerContext()
  
     function handleSelected(e){
         console.log(e)
     }
 
     function handleClass(id){
-        // console.log(id)
         if(id === active){
             return 'selected'
         }
@@ -34,7 +33,8 @@ function List() {
         state.map((el, index) => (
             <div key={el.id}
                 className={handleClass(el.id)} 
-                onClick={(e) => handleSelected(e)}> 
+                onClick={(e) => handleSelected(e)}
+                > 
 
                     <div className='textRow' >
                         <i className="fa-solid fa-location-dot" />
