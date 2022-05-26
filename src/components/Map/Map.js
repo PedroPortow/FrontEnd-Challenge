@@ -20,16 +20,7 @@ function Map() {
         googleMapsApiKey: "AIzaSyBGjBlhfC3qyQxCq8pqqao-_CXkXwXQloc"
     })
 
-    function handleMarkerClick(id, e){
-        if(id === active){
-            setActive(false)
-            e.domEvent.target.src = pinInactive
-        }
-        else{
-            setActive(id)
-            e.domEvent.target.src = pinActive
-        }
-    }
+
 
 
     function handlePolyClick(e){
@@ -45,7 +36,17 @@ function Map() {
         dispatch({type: 'ADD', payload: objForContext})
     }
 
+  
     /*falta implementar o loader component???problemasss*/ 
+
+    function handleMarkerClick(id, e){
+        if(id === active){
+            setActive(false)
+        }
+        else{
+            setActive(id)
+        }
+    }
 
   return (
     <div style={{height: '91.8vh'}}> 
@@ -65,12 +66,11 @@ function Map() {
             {state.map((el, index) => (
                 <Marker
                     key={el.id}
-                    id={el.id}
-                    draggable={true}
-                    useRef={marker}
-                    position={el.coordinates}
+                    draggable={active == el.id ? true : false}
                     onClick={(e) => handleMarkerClick(el.id, e)}
-                    icon={pinInactive}
+                    id={el.id}
+                    icon={el.id === active ? pinActive : pinInactive}
+                    position={el.coordinates}
                 />))}
             <List />
             <Controllers />
