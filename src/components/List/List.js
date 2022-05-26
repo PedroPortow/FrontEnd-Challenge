@@ -38,7 +38,7 @@ function List() {
 
                     <div className='textRow' >
                         <i className="fa-solid fa-location-dot" />
-                        {index < 10 ?  <p>Ponto nº 00{index}</p> : <p>Ponto nº 0{index}</p> }
+                        {index < 9 ?  <p>Ponto nº 00{index + 1}</p> : <p>Ponto nº 0{index + 1}</p> }
                     </div>
 
             <h4>Criado em: {el.date}</h4>

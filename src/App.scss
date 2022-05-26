@@ -27,11 +27,15 @@ a{
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
+    
+    border-bottom-right-radius: 5px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
+    border-bottom-right-radius: 5px;
+    
   }
   
   /* Handle */
