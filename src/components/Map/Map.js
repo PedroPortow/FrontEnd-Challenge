@@ -61,6 +61,8 @@ function Map() {
         dispatch({type: 'ADD', payload: objForContext})
     }
 
+    /*falta implementar o loader component???problemasss*/ 
+
   return (
     <div style={{height: '91.8vh'}}> 
        {isLoaded ? 
@@ -88,7 +90,7 @@ function Map() {
                 />))}
             <List />
             <Controllers />
-        </GoogleMap> : 'aqui vai o loader component'}
+        </GoogleMap> : 'Carregando....'}
   </div>
   )
 }
