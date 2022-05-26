@@ -31,21 +31,6 @@ function Map() {
         }
     }
 
-    //TENTATIVA FALHA DE DETECTAR CLIQUE FORA DO COMPONENTE
-    //N SEI FAZER RIP PESQUISAR DEPOIS
-    // useEffect(() => {
-    //     const checkIfClickOutside = (e) => {
-    //       if(marker.current && !marker.current.contains(e.target)){
-    //         setActive(false)
-    //         e.domEvent.target.src = pinInactive
-    //       }
-    //     }
-    //     document.addEventListener('click', checkIfClickOutside)
-
-    //   return () => {
-    //     document.removeEventListener('click', checkIfClickOutside)
-    //   }
-    // }, [setActive]) 
 
 
     function handlePolyClick(e){

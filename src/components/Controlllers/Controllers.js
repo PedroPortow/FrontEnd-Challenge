@@ -34,7 +34,6 @@ function Controllers() {
      setModalDeletePin(true)
     }
 
-    console.log(state)
 
     const classChange =  () => {
       if(state.length === 0){
