@@ -1,15 +1,15 @@
-import React, {useContext, createContext, useState, useReducer} from 'react'
-import { centerCalc } from '../utilities/calcCenter';
+import React, {useContext, createContext, useState, useReducer, useMemo} from 'react'
+import { centerCalc } from '../utilities/centerCalc';
 import data from '../talhao.json'
 
-const MarkerContext = createContext()
+const MarkerAndMapContext = createContext()
 
 const stateReducer = (state, action) => {
     switch(action.type){
         case 'ADD':
             return [...state, action.payload];
         case 'DELETE_ALL':
-            return []
+            return state = []
         case 'DELETE_UNIQUE':
             return (state = newState(state, action.payload))
         default:
@@ -28,18 +28,18 @@ const pathCoords = dataCord.map((cord) => (
   {lat: cord[1], lng: cord[0]}
   )) 
 
-const center = centerCalc(pathCoords)
+const center = centerCalc(pathCoords) //aqui seria interessante usar o useMemo?
 
 
-export const MarkerContextProvider = ({children}) => {
+export const MarkerAndMapContextProvider = ({children}) => {
     const initialMarker = []
-    const [state, dispatch] = useReducer(stateReducer, [])
+    const [markers, dispatch] = useReducer(stateReducer, [])
     const [active, setActive] = useState(null)
   
     return (
-        <MarkerContext.Provider 
+        <MarkerAndMapContext.Provider 
         value={{
-            state, 
+            markers, 
             dispatch, 
             active, 
             setActive, 
@@ -48,10 +48,10 @@ export const MarkerContextProvider = ({children}) => {
             pathCoords}}
         >
         {children}
-        </MarkerContext.Provider>
+        </MarkerAndMapContext.Provider>
     )
 }
 
-export function useMarkerContext(){
-    return useContext(MarkerContext)
+export function useMarkerAndMapContext(){
+    return useContext(MarkerAndMapContext)
 }

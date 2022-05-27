@@ -1,11 +1,11 @@
 import React from 'react'
-import { useMarkerContext } from '../../context/MarkerContext'
+import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
 import './List.scss'
 
 
 
 function List() {
-    const {state, active} = useMarkerContext()
+    const {markers, active} = useMarkerAndMapContext()
  
     function handleSelected(e){
         console.log(e)
@@ -21,16 +21,16 @@ function List() {
     }
 
 
-    console.log(state)
+    console.log(markers)
 
   return (
     <div className='list'>
         <div className='topList'>
             <h3>Listagem de pontos</h3>
         </div>
-    <div className={state.length > 4 ? 'listContainer scroll' : 'listContainer'}>
-        {state.length > 0 ? 
-        state.map((el, index) => (
+    <div className={markers.length > 4 ? 'listContainer scroll' : 'listContainer'}>
+        {markers.length > 0 ? 
+        markers.map((el, index) => (
             <div key={el.id}
                 className={handleClass(el.id)} 
                 onClick={(e) => handleSelected(e)}

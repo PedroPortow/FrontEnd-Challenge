@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import  ReactDOM  from 'react-dom'
-import { useMarkerContext } from '../../context/MarkerContext'
+import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
 import Modal from '../Modal/Modal'
 import Button from './Button/Button'
 import './Controllers.scss'
 
 
 function Controllers() {
-    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [modalDeleteAll, setModalDeleteAll] = useState(false)
     const [modalDeletePin, setModalDeletePin] = useState(false)
-    const {state, dispatch, active, setActive, center} = useMarkerContext()
+    const {markers, dispatch, active, setActive, center} = useMarkerAndMapContext()
 
    
     function handleAdd(){
@@ -27,32 +27,31 @@ function Controllers() {
     const portal = document.getElementById('portal')
 
     function handleModalDeleteAll(){
-        setIsModalVisible(true)
+        setModalDeleteAll(true)
     }
 
     const handleModalDeletePin = () => {
      setModalDeletePin(true)
     }
 
-
     const classChange =  () => {
-      if(state.length === 0){
+      if(markers.length === 0){
         return "buttonsWrapper"
       }
-      else if(state.length > 0 && !active){
+      else if(markers.length > 0 && !active){
         return "transition1"
       }
-      else if(state.length > 0 && active){
+      else if(markers.length > 0 && active){
        return 'transition2'
       }
     }
 
   return (
     <div className={classChange()} >
-      {isModalVisible ? 
+      {modalDeleteAll ? 
       ReactDOM.createPortal
       (<Modal 
-          closeModal={() => setIsModalVisible(false)}
+          closeModal={() => setModalDeleteAll(false)}
         />
       , portal) : ''}
 
@@ -67,7 +66,7 @@ function Controllers() {
       {active && 
         <Button text={'DELETAR PIN'}  
           handler={handleModalDeletePin}
-          del={'del'}
+          del={true}
           className={'button removeButton'}
         />}
       <Button 
@@ -75,11 +74,11 @@ function Controllers() {
           handler={handleAdd}
           className={'button addButton'}
         />
-        {state.length > 0 &&
+        {markers.length > 0 &&
         <Button 
           text={'DELETAR TODOS'}
           handler={handleModalDeleteAll}
-          del={'del'}
+          del={true}
           className={'button removeButton'} 
         />}
     </div>

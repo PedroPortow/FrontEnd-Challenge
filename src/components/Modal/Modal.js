@@ -1,10 +1,10 @@
 import React from 'react'
-import { useMarkerContext } from '../../context/MarkerContext'
+import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
 import './Modal.scss'
 
 
 function Modal({closeModal, deletePin}) {
-    const {state, dispatch, active, setActive} = useMarkerContext()
+    const {state, dispatch, active, setActive} = useMarkerAndMapContext()
     
     function handleDeleteAll(){
       closeModal()

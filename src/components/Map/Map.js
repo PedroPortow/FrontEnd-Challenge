@@ -1,10 +1,11 @@
-import React from 'react'
+import React , {useMemo, memo} from 'react'
 import { GoogleMap, Marker, Polygon, useJsApiLoader } from '@react-google-maps/api';
 import List from '../List/List';
-import {useMarkerContext } from '../../context/MarkerContext';
+import {useMarkerAndMapContext } from '../../context/MarkerAndMapContext';
 import Controllers from '../Controlllers/Controllers';
 import pinInactive from '../../assets/Regular=on, Move=off.svg'
 import pinActive from '../../assets/Regular=off, Move=on.svg'
+import Loader from '../Loader/Loader';
 
 
 function Map() {
@@ -12,12 +13,12 @@ function Map() {
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyBGjBlhfC3qyQxCq8pqqao-_CXkXwXQloc"
     })
+    const {markers, dispatch, active, setActive, center, dataCord, pathCoords} = useMarkerAndMapContext()
     
     const google = window.google;
-    const {state, dispatch, active, setActive, center, dataCord, pathCoords} = useMarkerContext()
-   
+    if(!google) return null
 
-    const map = () => {
+    const mapContent = () => {
 
         const options = {
             disableDefaultUI: true,   
@@ -85,7 +86,7 @@ function Map() {
                         options={polyOptions} 
                         onClick={handlePolyClick}
                     />  
-                        {state.map((el, index) => (
+                        {markers.map((el, index) => (
                             <Marker
                                 key={el.id}
                                 draggable={active === el.id ? true : false}
@@ -103,10 +104,13 @@ function Map() {
     };
 
     if(isLoaded){
-        return map()
+        return mapContent()
     }else {
-        return <p>Carregando...</p>
+        return <Loader />
     }
 }
 
-export default Map
+ //Não consegui botar o useMemo nas minhas options, polyoptions então resolvi
+ //botar esse memo aqui mas não sei se ele ta sendo util
+ 
+export default memo(Map)
