@@ -1,4 +1,4 @@
-import React, {useContext, createContext, useState, useReducer, useMemo} from 'react'
+import React, {useContext, createContext, useState, useReducer, useMemo, useEffect} from 'react'
 import { centerCalc } from '../utilities/centerCalc';
 import data from '../talhao.json'
 
@@ -33,8 +33,15 @@ const center = centerCalc(pathCoords) //aqui seria interessante usar o useMemo?
 
 export const MarkerAndMapContextProvider = ({children}) => {
     const initialMarker = []
-    const [markers, dispatch] = useReducer(stateReducer, [])
+    const [markers, dispatch] = useReducer(stateReducer, [], () => {
+        const localData = localStorage.getItem('markers')
+        return localData ? JSON.parse(localData) : []
+    })
     const [active, setActive] = useState(null)
+
+    useEffect(() => {
+        localStorage.setItem("markers", JSON.stringify(markers))
+    }, [markers] )
   
     return (
         <MarkerAndMapContext.Provider 
