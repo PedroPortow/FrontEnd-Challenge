@@ -4,7 +4,7 @@ import './Modal.scss'
 
 
 function Modal({closeModal, deletePin}) {
-    const {state, dispatch, active, setActive} = useMarkerAndMapContext()
+    const {dispatch, active, setActive} = useMarkerAndMapContext()
     
     function handleDeleteAll(){
       closeModal()

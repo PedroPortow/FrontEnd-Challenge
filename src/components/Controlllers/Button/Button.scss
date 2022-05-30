@@ -10,6 +10,11 @@
     width: 150px;
     animation: opacityAnimation 300ms ease-in-out;
 
+    @media(max-width: 649px){
+      padding: 6px;
+      font-size: 0.7em;
+  }
+
     @keyframes opacityAnimation { 
         0% {
           opacity: 0;

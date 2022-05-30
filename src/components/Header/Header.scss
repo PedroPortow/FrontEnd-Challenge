@@ -8,13 +8,15 @@
     z-index: 999;
     box-shadow: 0px 7px 16px 0px rgba(112,112,112,0.1);
 
-
-
         h1{
             margin-left: 15px;
             text-align: center;
             color: #20252B;
             font-size: 1.5em;
+
+            @media(max-width: 649px){
+                font-size: 1.2em;
+            }
         }
     
 

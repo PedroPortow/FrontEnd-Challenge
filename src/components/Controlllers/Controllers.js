@@ -1,33 +1,40 @@
+//React
 import React, { useState } from 'react'
 import  ReactDOM  from 'react-dom'
+
+//Context
 import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
+
+//Components
 import Modal from '../Modal/Modal'
 import Button from './Button/Button'
+
+//Styling
 import './Controllers.scss'
 
 
 function Controllers() {
-    const [modalDeleteAll, setModalDeleteAll] = useState(false)
+    const [modalDeleteAllPins, setModalDeleteAllPins] = useState(false)
     const [modalDeletePin, setModalDeletePin] = useState(false)
-    const {markers, dispatch, active, setActive, center} = useMarkerAndMapContext()
 
+    const {markers, dispatch, active, center} = useMarkerAndMapContext()
    
     function handleAdd(){
         const lat = center.lat
         const lng = center.lng
         const today = new Date();
         const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()+' - ' +today.getHours() + ":" + today.getMinutes() 
-        const time = Date.now()
+
+        const timestamp = Date.now()
         
-        const id = Math.floor(Math.random() * 10000);
-        const objForContext = {coordinates: {lat: lat, lng: lng }, timestamp: time, id: id, date: date}
+        const objForContext = {coordinates: {lat: lat, lng: lng }, timestamp, id: timestamp, date: date}
         dispatch({type: 'ADD', payload: objForContext})
     }
 
     const portal = document.getElementById('portal')
 
-    function handleModalDeleteAll(){
-        setModalDeleteAll(true)
+    function handleModalDeleteAllPins(){
+        setModalDeleteAllPins(true)
     }
 
     const handleModalDeletePin = () => {
@@ -41,17 +48,18 @@ function Controllers() {
       else if(markers.length > 0 && !active){
         return "transition1"
       }
-      else if(markers.length > 0 && active){
+      else {
        return 'transition2'
       }
     }
 
   return (
     <div className={classChange()} >
-      {modalDeleteAll ? 
+
+      {modalDeleteAllPins ? 
       ReactDOM.createPortal
       (<Modal 
-          closeModal={() => setModalDeleteAll(false)}
+          closeModal={() => setModalDeleteAllPins(false)}
         />
       , portal) : ''}
 
@@ -77,7 +85,7 @@ function Controllers() {
         {markers.length > 0 &&
         <Button 
           text={'DELETAR TODOS'}
-          handler={handleModalDeleteAll}
+          handler={handleModalDeleteAllPins}
           del={true}
           className={'button removeButton'} 
         />}

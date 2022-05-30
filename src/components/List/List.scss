@@ -8,10 +8,8 @@
     flex-direction: column; 
     margin-left: 20px;
     margin-top: 20px;
+  
 
-
-   
-    
     .topList{
         background-color: #20252B;
         padding: 8px;
@@ -38,6 +36,11 @@
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         flex-direction: column;
+
+        @media(max-width: 649px){
+            max-height: 122px;
+            overflow-y: scroll;
+        }
 
         
     }

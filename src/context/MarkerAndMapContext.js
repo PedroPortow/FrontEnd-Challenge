@@ -1,10 +1,28 @@
-import React, {useContext, createContext, useState, useReducer, useMemo, useEffect} from 'react'
-import { centerCalc } from '../utilities/centerCalc';
+//React
+import React, {useContext, createContext, useState, useReducer, useEffect} from 'react'
+
+//Function Calculate Polygon Center
+import {centerCalc} from '../utilities/centerCalc';
+
+//Polygon Geocoords
 import data from '../talhao.json'
+
+
 
 const MarkerAndMapContext = createContext()
 
-const stateReducer = (state, action) => {
+//Paths Polygon
+const {geometry} = data.features[0]
+const {coordinates} = geometry;
+const dataCord = coordinates[0]
+const pathCoords = dataCord.map((cord) => (
+  {lat: cord[1], lng: cord[0]}
+)) 
+
+const center = centerCalc(pathCoords) 
+
+//Reducer
+const markerReducer = (state, action) => {
     switch(action.type){
         case 'ADD':
             return [...state, action.payload];
@@ -21,19 +39,8 @@ const newState = (state, id) => {
     return state.filter((i) => i.id !== id)
 }
 
-const {geometry} = data.features[0]
-const {coordinates} = geometry;
-const dataCord = coordinates[0]
-const pathCoords = dataCord.map((cord) => (
-  {lat: cord[1], lng: cord[0]}
-  )) 
-
-const center = centerCalc(pathCoords) //aqui seria interessante usar o useMemo?
-
-
 export const MarkerAndMapContextProvider = ({children}) => {
-    const initialMarker = []
-    const [markers, dispatch] = useReducer(stateReducer, [], () => {
+    const [markers, dispatch] = useReducer(markerReducer, [], () => {
         const localData = localStorage.getItem('markers')
         return localData ? JSON.parse(localData) : []
     })
@@ -51,9 +58,7 @@ export const MarkerAndMapContextProvider = ({children}) => {
             active, 
             setActive, 
             center, 
-            dataCord, 
-            pathCoords}}
-        >
+            pathCoords}}>
         {children}
         </MarkerAndMapContext.Provider>
     )

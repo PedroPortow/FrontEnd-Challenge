@@ -1,4 +1,3 @@
-
 export function centerCalc(coordinates){
     let x_cart = 0;
     let y_cart = 0;
@@ -45,5 +44,7 @@ export function centerCalc(coordinates){
       lng: lng_c,
     };
     return center;
-  }
+}
+
+
   
