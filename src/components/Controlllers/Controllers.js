@@ -1,5 +1,5 @@
 //React
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import  ReactDOM  from 'react-dom'
 
 //Context
@@ -41,7 +41,7 @@ function Controllers() {
      setModalDeletePin(true)
     }
 
-    const classChange =  () => {
+    const classChange =  useMemo(() => {
       if(markers.length === 0){
         return "buttonsWrapper"
       }
@@ -51,22 +51,22 @@ function Controllers() {
       else {
        return 'transition2'
       }
-    }
+    }, [active, markers.length])
 
   return (
-    <div className={classChange()} >
+    <div className={classChange} >
 
       {modalDeleteAllPins ? 
       ReactDOM.createPortal
       (<Modal 
-          closeModal={() => setModalDeleteAllPins(false)}
+          onCloseModal={() => setModalDeleteAllPins(false)}
         />
       , portal) : ''}
 
       {modalDeletePin ? 
       ReactDOM.createPortal
       (<Modal
-          closeModal={() => setModalDeletePin(false)}
+          onCloseModal={() => setModalDeletePin(false)}
           deletePin={true}
         />
         , portal) : ''}

@@ -1,24 +1,9 @@
 import React from 'react'
-
-//Context
 import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
-
-//Styling
 import './List.scss'
-
-
 
 function List() {
     const {markers, active} = useMarkerAndMapContext()
- 
-    function handleClass(id){
-        if(id === active){
-            return 'selected'
-        }
-        else{
-            return 'section'
-        }
-    }
 
   return (
     <div className='list'>
@@ -29,10 +14,10 @@ function List() {
             {markers.length > 0 ? 
             markers.map((el, index) => (
                 <div key={el.id}
-                    className={handleClass(el.id)}> 
+                    className={el.id === active ? 'selected' : 'section'}> 
                         <div className='textRow'>
                             <i className="fa-solid fa-location-dot" />
-                            {index < 9 ?  <p>Ponto nº 00{index + 1}</p> : <p>Ponto nº 0{index + 1}</p>}
+                            <p>{'Ponto n°' + String(index + 1).padStart(3, "0")}</p>
                         </div>
                 <h4>Criado em: {el.date}</h4> 
                 </div>)) : 

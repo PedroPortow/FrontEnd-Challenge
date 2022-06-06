@@ -3,18 +3,18 @@ import { useMarkerAndMapContext } from '../../context/MarkerAndMapContext'
 import './Modal.scss'
 
 
-function Modal({closeModal, deletePin}) {
+function Modal({onCloseModal, deletePin}) {
     const {dispatch, active, setActive} = useMarkerAndMapContext()
     
     function handleDeleteAll(){
-      closeModal()
+      onCloseModal()
       dispatch({type: 'DELETE_ALL'})
     }
 
     function handleDeletePin(activePin){
       dispatch({type: 'DELETE_UNIQUE', payload: activePin})
       setActive(false)
-      closeModal()
+      onCloseModal()
     }
 
   return (
@@ -34,7 +34,7 @@ function Modal({closeModal, deletePin}) {
         </div>
         <div className='forthSection'>
             <button className='deleteButton' onClick={deletePin ? () =>handleDeletePin(active) : handleDeleteAll}><i className="fa-solid fa-trash-can" /> EXCLUIR</button>
-            <button className='cancelButton' onClick={() => closeModal()}>CANCELAR</button>
+            <button className='cancelButton' onClick={() => onCloseModal()}>CANCELAR</button>
         </div>
       </div>
     </div>

@@ -101,14 +101,14 @@ function Map() {
                         options={polyOptions} 
                         onClick={handlePolyClick}/>  
 
-                        {markers.map((el, index) => (
+                        {markers.map((marker, index) => (
                             <Marker
-                                key={el.id}
-                                draggable={active === el.id ? true : false}
-                                onClick={(e) => handleMarkerClick(el.id, e)}
-                                id={el.id}
-                                icon={el.id === active ? pinActive : pinInactive}
-                                position={el.coordinates}/>
+                                key={marker.id}
+                                draggable={active === marker.id ? true : false}
+                                onClick={(e) => handleMarkerClick(marker.id, e)}
+                                id={marker.id}
+                                icon={marker.id === active ? pinActive : pinInactive}
+                                position={marker.coordinates}/>
                         ))}
 
                     <List />

@@ -27,15 +27,15 @@ const markerReducer = (state, action) => {
         case 'ADD':
             return [...state, action.payload];
         case 'DELETE_ALL':
-            return state = []
+            return []
         case 'DELETE_UNIQUE':
-            return (state = newState(state, action.payload))
+            return (state = removeMarker(state, action.payload))
         default:
             return state
     }
 }
 
-const newState = (state, id) => {
+const removeMarker = (state, id) => {
     return state.filter((i) => i.id !== id)
 }
 
